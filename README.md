@@ -36,7 +36,12 @@ fn main() {
     let response = client.notify(Some(json!({
         "title": "Notification Title",
         "summary": "Notification Summary",
-        "body": "Notification Body"
+        "body": "Notification Body",
+        "tags": ["tag1", "tag2"],
+        "properties": Some(json!({
+            "key": 1,
+            "another-key": 2
+        })
     })));
     /// Handles response
     match response {
