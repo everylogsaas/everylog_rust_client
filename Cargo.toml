@@ -1,0 +1,15 @@
+[package]
+name = "everylog_rust_client"
+version = "0.1.0"
+edition = "2021"
+authors = ["David Gasana Manzi <david.gasana@devinterface.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "*", features = ["blocking", "json"] }
+serde_json = "1.0.80"
+
+[dev-dependencies]
+mockito = "^0.28"
+
