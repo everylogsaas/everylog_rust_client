@@ -3,15 +3,15 @@ use serde_json::Value;
 use std::error::Error;
 use reqwest;
 
-pub struct EveryLogRustClient {
+pub struct EverylogRustClient {
     setup_defaults: Value,
     notify_defaults: Value,
     options: Option<Value>,
     notify_options: Option<Value>,
 }
 
-impl EveryLogRustClient {
-    pub fn new() -> EveryLogRustClient {
+impl EverylogRustClient {
+    pub fn new() -> EverylogRustClient {
         let setup_defaults = json!({
             "api_key": null,
             "projectId": null,
@@ -31,7 +31,7 @@ impl EveryLogRustClient {
             "groups": [],
         });
 
-        EveryLogRustClient {
+        EverylogRustClient {
             setup_defaults,
             notify_defaults,
             options: None,
@@ -39,7 +39,7 @@ impl EveryLogRustClient {
         }
     }
 
-    pub fn setup(&mut self, options: Option<Value>) -> &mut EveryLogRustClient {
+    pub fn setup(&mut self, options: Option<Value>) -> &mut EverylogRustClient {
         self.options = self.parse_options(options, &self.setup_defaults);
         self
     }

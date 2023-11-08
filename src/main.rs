@@ -1,8 +1,8 @@
-use everylog_rust_client::EveryLogRustClient;
+use everylog_rust_client::EverylogRustClient;
 use serde_json::json;
 
 fn main() {
-    let mut client = EveryLogRustClient::new();
+    let mut client = EverylogRustClient::new();
     client.setup(Some(json!({
         "api_key": "api_keyd",
         "projectId": "test-rust"
