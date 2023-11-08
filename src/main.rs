@@ -4,8 +4,8 @@ use serde_json::json;
 fn main() {
     let mut client = EverylogRustClient::new();
     client.setup(Some(json!({
-        "api_key": "api_keyd",
-        "projectId": "test-rust"
+        "api_key": "api_key",
+        "projectId": "testingrustclient"
     })));
 
     let response = client.notify(Some(json!({
@@ -14,10 +14,10 @@ fn main() {
         "body": "Notification Body",
         "push": true,
         "tags": ["tag1", "tag2"],
-        "properties": Some(json!({
-            "key": 1,
-            "another-key": 2
-        }))
+        "properties": [Some(json!({
+            "key": '1',
+            "another-key": '2'
+        }))]
     })));
 
     match response {

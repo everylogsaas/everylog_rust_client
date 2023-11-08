@@ -29,7 +29,8 @@ mod tests {
         let response = client.notify(Some(json!({
             "title": "Notification Title",
             "summary": "Notification Summary",
-            "body": "Notification Body"
+            "body": "Notification Body",
+            "properties": [Some(json!({"author": "David"}))]
         })));
 
         match response {

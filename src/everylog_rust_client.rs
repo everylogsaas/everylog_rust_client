@@ -27,7 +27,7 @@ impl EverylogRustClient {
             "push": false,
             "icon": "",
             "externalChannels": [],
-            "properties": {},
+            "properties": [{}],
             "groups": [],
         });
 
@@ -49,6 +49,19 @@ impl EverylogRustClient {
 
         let mut merged_options = self.notify_options.clone().unwrap();
         merged_options["projectId"] = self.options.as_ref().unwrap()["projectId"].clone();
+
+        // Ensure that properties is an array of objects
+        if let Some(properties) = merged_options.get_mut("properties") {
+            if properties.is_array() {
+                for item in properties.as_array_mut().unwrap() {
+                    if !item.is_object() {
+                        return Err("Properties must be an array of objects.".into());
+                    }
+                }
+            } else {
+                return Err("Properties must be an array of objects.".into());
+            }
+        }
 
         let client = reqwest::blocking::Client::new();
         let url = self.options.as_ref().unwrap()["everylog_url"].as_str().unwrap();
