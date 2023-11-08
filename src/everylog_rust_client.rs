@@ -5,9 +5,9 @@ use reqwest;
 
 pub struct EverylogRustClient {
     setup_defaults: Value,
-    notify_defaults: Value,
+    log_entry_defaults: Value,
     options: Option<Value>,
-    notify_options: Option<Value>,
+    log_entry_options: Option<Value>,
 }
 
 impl EverylogRustClient {
@@ -18,7 +18,7 @@ impl EverylogRustClient {
             "everylog_url": "https://api.everylog.io/api/v1/log-entries"
         });
 
-        let notify_defaults = json!({
+        let log_entry_defaults = json!({
             "title": "Empty notification",
             "summary": "Empty summary",
             "body": "Empty body",
@@ -33,9 +33,9 @@ impl EverylogRustClient {
 
         EverylogRustClient {
             setup_defaults,
-            notify_defaults,
+            log_entry_defaults,
             options: None,
-            notify_options: None,
+            log_entry_options: None,
         }
     }
 
@@ -44,10 +44,10 @@ impl EverylogRustClient {
         self
     }
 
-    pub fn notify(&mut self, notify_options: Option<Value>) -> Result<Value, Box<dyn Error>> {
-        self.notify_options = self.parse_options(notify_options, &self.notify_defaults);
+    pub fn create_log_entry(&mut self, log_entry_options: Option<Value>) -> Result<Value, Box<dyn Error>> {
+        self.log_entry_options = self.parse_options(log_entry_options, &self.log_entry_defaults);
 
-        let mut merged_options = self.notify_options.clone().unwrap();
+        let mut merged_options = self.log_entry_options.clone().unwrap();
         merged_options["projectId"] = self.options.as_ref().unwrap()["projectId"].clone();
 
         // Ensure that properties is an array of objects

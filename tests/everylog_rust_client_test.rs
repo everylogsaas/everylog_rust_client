@@ -26,7 +26,7 @@ mod tests {
             "everylog_url": server_url + "/api/v1/log-entries",
         })));
 
-        let response = client.notify(Some(json!({
+        let response = client.create_log_entry(Some(json!({
             "title": "Notification Title",
             "summary": "Notification Summary",
             "body": "Notification Body",

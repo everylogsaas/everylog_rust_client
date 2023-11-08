@@ -5,10 +5,11 @@ fn main() {
     let mut client = EverylogRustClient::new();
     client.setup(Some(json!({
         "api_key": "api_key",
-        "projectId": "testingrustclient"
+        "projectId": "testingrustclient",
+        "everylog_url": "https://api.everylog.devdemo.it/api/v1/log-entries"
     })));
 
-    let response = client.notify(Some(json!({
+    let response = client.create_log_entry(Some(json!({
         "title": "Notification Title",
         "summary": "Notification Summary",
         "body": "Notification Body",
