@@ -21,19 +21,19 @@ This is to be set once globally (instantiated) from within the project, and used
 ///
 /// * `notify_options` - A Json object containing the options for the notification.
 
-use everylog_rust_client::EveryLogRustClient;
+use everylog_rust_client::EverylogRustClient;
 /// use serde_json::json;
 ///
 /// 
 fn main() {
-    let mut client = EveryLogRustClient::new();
+    let mut client = EverylogRustClient::new();
     /// Sets up the client with the request arguments
     client.setup(Some(json!({
         "api_key": "your_api_key",
         "projectId": "your-project-id"
     })));
     /// notifies with notification options
-    let response = client.notify(Some(json!({
+    let response = client.create_log_entry(Some(json!({
         "title": "Notification Title",
         "summary": "Notification Summary",
         "body": "Notification Body",

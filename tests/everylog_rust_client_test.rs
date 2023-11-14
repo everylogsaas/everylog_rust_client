@@ -1,4 +1,4 @@
-use everylog_rust_client::EveryLogRustClient;
+use everylog_rust_client::EverylogRustClient;
 use serde_json::json;
 
 #[cfg(test)]
@@ -19,17 +19,18 @@ mod tests {
             .with_body(r#"{"success": true}"#)
             .create();
 
-        let mut client = EveryLogRustClient::new();
+        let mut client = EverylogRustClient::new();
         client.setup(Some(json!({
             "api_key": "your_api_key",
             "projectId": "your_project_id",
             "everylog_url": server_url + "/api/v1/log-entries",
         })));
 
-        let response = client.notify(Some(json!({
+        let response = client.create_log_entry(Some(json!({
             "title": "Notification Title",
             "summary": "Notification Summary",
-            "body": "Notification Body"
+            "body": "Notification Body",
+            "properties": [Some(json!({"author": "David"}))]
         })));
 
         match response {
